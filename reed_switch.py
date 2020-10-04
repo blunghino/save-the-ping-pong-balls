@@ -1,7 +1,9 @@
+import os
+
 import RPi.GPIO as GPIO
 
  
-REED_SWITCH_GPIO = 17 # gpio pin number
+REED_SWITCH_GPIO = os.getenv('REED_SWITCH_GPIO')
 
 GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
 GPIO.setup(REED_SWITCH_GPIO, GPIO.IN) # GPIO Assign mode

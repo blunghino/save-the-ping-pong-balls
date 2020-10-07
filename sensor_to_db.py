@@ -4,7 +4,7 @@ import time
 from typing import Callable, Dict
 
 from influxdb_client import InfluxDBClient, Point, WritePrecision
-from influxdb_client.client.write_api import ASYNCHRONOUS, PointSettings
+from influxdb_client.client.write_api import PointSettings
 
 from bme280_sensor import bme280_humidity, bme280_temperature
 from reed_switch import reed_switch_is_open
@@ -16,7 +16,6 @@ def get_measurements(sensors: Dict[str, Callable]) -> Point:
     for sensor_name, sensor_func in sensors.items():
         point = point.field(sensor_name, sensor_func())
     return point
-
 
 
 if __name__ == "__main__":
@@ -38,9 +37,6 @@ if __name__ == "__main__":
         t0 = time.time()
         point = get_measurements(sensors)
         # https://github.com/influxdata/influxdb-client-python#asynchronous-client
-        # write_api.write(bucket=bucket, record=point)
+        write_api.write(bucket=bucket, record=point)
         t1 = time.time()
         time.sleep(1. - (t1 - t0))
-        print(reed_switch_is_open())
-        print(bme280_temperature())
-        print(_tmp117.read_temperature())

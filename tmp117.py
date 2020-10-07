@@ -1,8 +1,8 @@
 import smbus
 
-
-TEMPERATURE_REG = 0x00
 ADDRESS = 0x48
+CONFIG_REG = 0x01
+TEMPERATURE_REG = 0x00
 
 
 class TMP117:
@@ -21,7 +21,7 @@ class TMP117:
             mask = 2**length - 1
             return (data[num] >> location) & mask
 
-    def bytes_to_temp(self, data: bytes):
+    def bytes_to_temp(self, data: bytes) -> float:
         # Adjustment for extended mode
         ext = self.extract_config(1, 4, 1)
         #ext = data[1] & 0x01

@@ -20,10 +20,10 @@ def get_measurements(sensors: Dict[str, Callable]) -> Point:
 
 if __name__ == "__main__":
     bucket = os.getenv("INFLUXDB_V2_BUCKET")
+    experiment = os.getenv("EXPERIMENT")
     # https://github.com/influxdata/influxdb-client-python#via-environment-properties
     client = InfluxDBClient.from_env_properties()
-    ps = PointSettings(experiment="seaside-kitchen-fridge")
-    # write_api = client.write_api(write_options=ASYNCHRONOUS, point_settings=ps)
+    ps = PointSettings(experiment=experiment)
     write_api = client.write_api(point_settings=ps)
     
     _tmp117 = TMP117()
@@ -36,7 +36,6 @@ if __name__ == "__main__":
     while True:
         t0 = time.time()
         point = get_measurements(sensors)
-        # https://github.com/influxdata/influxdb-client-python#asynchronous-client
         write_api.write(bucket=bucket, record=point)
         t1 = time.time()
         time.sleep(1. - (t1 - t0))

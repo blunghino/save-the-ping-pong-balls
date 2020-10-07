@@ -15,4 +15,3 @@ def bme280_humidity() -> float:
 def bme280_temperature() -> float:
     data = bme280.sample(bme280_bus, bme280_address, calibration_params)
     return data.temperature
-

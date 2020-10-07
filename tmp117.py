@@ -10,7 +10,7 @@ class TMP117:
     def __init__(self, address: int = 0x48, busnum: int = 1):
         self.address = address
         self.bus = smbus.SMBus(busnum)
-        self.readTemperature()
+        self.read_temperature()
 
     def extract_config(self, num: int, location: int, length: int) -> bytes:
         data = self.bus.read_i2c_block_data(self.address, CONFIG_REG, 2)

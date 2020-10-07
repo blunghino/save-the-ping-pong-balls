@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 import time
-from typing import Callable
+from typing import Callable, Dict
 
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import ASYNCHRONOUS, PointSettings
@@ -25,9 +25,9 @@ def cli():
     # write_api = client.write_api(write_options=ASYNCHRONOUS, point_settings=ps)
     write_api = client.write_api(point_settings=ps)
     
-    # _tmp102 = TMP102(units='C', address=0x48, busnum=1)
+    _tmp102 = TMP102(units='C', address=0x48, busnum=1)
     sensors = {
-        # 'tmp102': _tmp102.readTemperature,
+        'tmp102': _tmp102.readTemperature,
         'reed_switch_is_open': reed_switch_is_open,
     }
     while True:
@@ -35,7 +35,8 @@ def cli():
         # https://github.com/influxdata/influxdb-client-python#asynchronous-client
         # write_api.write(bucket=bucket, record=point)
         time.sleep(1)
-        print(reed_switch_is_open())
+        # print(reed_switch_is_open())
+        print(_tmp102.readTemperature())
     client.__del__()
 
 

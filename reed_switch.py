@@ -3,10 +3,10 @@ import os
 import RPi.GPIO as GPIO
 
  
-REED_SWITCH_GPIO = os.getenv('REED_SWITCH_GPIO')
+REED_SWITCH_GPIO = int(os.getenv('REED_SWITCH_GPIO'))
 
 GPIO.setmode(GPIO.BCM) # GPIO Numbers instead of board numbers
-GPIO.setup(REED_SWITCH_GPIO, GPIO.IN) # GPIO Assign mode
+GPIO.setup(REED_SWITCH_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP) # GPIO Assign mode
 # GPIO.add_event_detect(REED_SWITCH_GPIO, GPIO.RISING, callback=)
 
 

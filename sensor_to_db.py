@@ -32,7 +32,7 @@ if __name__ == "__main__":
         'bme280_humidity': bme280_humidity,
         'bme280_temperature': bme280_temperature,
         'reed_switch_is_open': reed_switch_is_open,
-        'tmp117_temperature': _tmp117.get_temperature,
+        'tmp117_temperature': _tmp117.read_temperature,
     }
     while True:
         t0 = time.time()
@@ -43,4 +43,4 @@ if __name__ == "__main__":
         time.sleep(1. - (t1 - t0))
         print(reed_switch_is_open())
         print(bme280_temperature())
-        print(_tmp117.get_temperature())
+        print(_tmp117.read_temperature())

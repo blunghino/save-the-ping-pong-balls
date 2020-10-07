@@ -23,9 +23,5 @@ class TMP117:
 
     def read_temperature(self) -> float:
         # read two bytes from address, register
-        data = self.bus.read_i2c_block_data(
-            i2c_addr=self.address,
-            register=TEMPERATURE_REG,
-            length=2
-        )
+        data = self.bus.read_i2c_block_data(self.address, TEMPERATURE_REG, 2)
         return self.bytes_to_temp(data)

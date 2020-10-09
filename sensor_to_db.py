@@ -7,7 +7,7 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import PointSettings
 
 from bme280_sensor import bme280_humidity, bme280_temperature
-from reed_switch import reed_switch_is_open
+from reed_switch import reed_switch_is_open, reed_switch_is_open_int
 from tmp117 import TMP117
 
 
@@ -31,6 +31,7 @@ if __name__ == "__main__":
         'bme280_humidity': bme280_humidity,
         'bme280_temperature': bme280_temperature,
         'reed_switch_is_open': reed_switch_is_open,
+        'reed_switch_is_open_int': reed_switch_is_open_int,
         'tmp117_temperature': _tmp117.read_temperature,
     }
     while True:

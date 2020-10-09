@@ -11,7 +11,7 @@ GPIO.setup(REED_SWITCH_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP) # GPIO Assign mo
 
 
 def reed_switch_is_open() -> bool:
-    return not GPIO.input(REED_SWITCH_GPIO)
+    return GPIO.input(REED_SWITCH_GPIO)
 
 
 def reed_switch_is_open_int() -> int:

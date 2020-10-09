@@ -30,7 +30,6 @@ if __name__ == "__main__":
     sensors = {
         'bme280_humidity': bme280_humidity,
         'bme280_temperature': bme280_temperature,
-        'reed_switch_is_open': reed_switch_is_open,
         'reed_switch_is_open_int': reed_switch_is_open_int,
         'tmp117_temperature': _tmp117.read_temperature,
     }

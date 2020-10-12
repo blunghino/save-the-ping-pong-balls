@@ -1,0 +1,599 @@
+{
+ "meta": {
+  "version": "1",
+  "type": "dashboard",
+  "name": "save-the-ping-pong-balls-Template",
+  "description": "template created from dashboard: save-the-ping-pong-balls"
+ },
+ "content": {
+  "data": {
+   "type": "dashboard",
+   "attributes": {
+    "name": "save-the-ping-pong-balls",
+    "description": ""
+   },
+   "relationships": {
+    "label": {
+     "data": []
+    },
+    "cell": {
+     "data": [
+      {
+       "type": "cell",
+       "id": "066ed6bb66c4f000"
+      },
+      {
+       "type": "cell",
+       "id": "066eda44ab936000"
+      },
+      {
+       "type": "cell",
+       "id": "066edaeda1bdd000"
+      },
+      {
+       "type": "cell",
+       "id": "066edcecc9004000"
+      },
+      {
+       "type": "cell",
+       "id": "066edf95935f5000"
+      },
+      {
+       "type": "cell",
+       "id": "066edfed9fbdd000"
+      }
+     ]
+    },
+    "variable": {
+     "data": []
+    }
+   }
+  },
+  "included": [
+   {
+    "id": "066ed6bb66c4f000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 0,
+     "w": 12,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "066ed6bb66c4f000"
+      }
+     }
+    }
+   },
+   {
+    "id": "066eda44ab936000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 7,
+     "w": 4,
+     "h": 3
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "066eda44ab936000"
+      }
+     }
+    }
+   },
+   {
+    "id": "066edaeda1bdd000",
+    "type": "cell",
+    "attributes": {
+     "x": 4,
+     "y": 7,
+     "w": 4,
+     "h": 3
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "066edaeda1bdd000"
+      }
+     }
+    }
+   },
+   {
+    "id": "066edcecc9004000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 4,
+     "w": 4,
+     "h": 3
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "066edcecc9004000"
+      }
+     }
+    }
+   },
+   {
+    "id": "066edf95935f5000",
+    "type": "cell",
+    "attributes": {
+     "x": 4,
+     "y": 4,
+     "w": 4,
+     "h": 3
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "066edf95935f5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "066edfed9fbdd000",
+    "type": "cell",
+    "attributes": {
+     "x": 8,
+     "y": 4,
+     "w": 4,
+     "h": 3
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "066edfed9fbdd000"
+      }
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "066ed6bb66c4f000",
+    "attributes": {
+     "name": "time series",
+     "properties": {
+      "shape": "chronograf-v2",
+      "queries": [
+       {
+        "text": "from(bucket: \"save-the-ping-pong-balls\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensorReadings\")\n  |> filter(fn: (r) => r[\"_field\"] == \"reed_switch_is_open_int\" or r[\"_field\"] == \"tmp117_temperature\" or r[\"_field\"] == \"bme280_temperature\")\n  |> filter(fn: (r) => r[\"experiment\"] == \"seaside-kitchen-fridge-1\")\n  |> aggregateWindow(every: 1s, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "axes": {
+       "x": {
+        "bounds": [
+         "",
+         ""
+        ],
+        "label": "",
+        "prefix": "",
+        "suffix": "",
+        "base": "10",
+        "scale": "linear"
+       },
+       "y": {
+        "bounds": [
+         "",
+         ""
+        ],
+        "label": "is door open | fridge temp | room temp",
+        "prefix": "",
+        "suffix": "",
+        "base": "10",
+        "scale": "linear"
+       }
+      },
+      "type": "xy",
+      "legend": {},
+      "geom": "line",
+      "colors": [
+       {
+        "id": "37535cb8-bcf2-4b46-850b-6ff16e6302d8",
+        "type": "scale",
+        "hex": "#31C0F6",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "164863b5-85ec-4fa3-ab17-39ba52231ec7",
+        "type": "scale",
+        "hex": "#A500A5",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "e15b9aae-49e5-4586-8d69-c09c79447223",
+        "type": "scale",
+        "hex": "#FF7E27",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       }
+      ],
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "xColumn": "_time",
+      "yColumn": "_value",
+      "shadeBelow": false,
+      "position": "overlaid",
+      "timeFormat": "",
+      "hoverDimension": "auto",
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 10
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "066eda44ab936000",
+    "attributes": {
+     "name": "fridge histogram",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "histogram",
+      "queries": [
+       {
+        "text": "from(bucket: \"save-the-ping-pong-balls\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensorReadings\")\n  |> filter(fn: (r) => r[\"experiment\"] == \"seaside-kitchen-fridge-1\")\n  |> filter(fn: (r) => r[\"_field\"] == \"tmp117_temperature\")\n  |> aggregateWindow(every: 1s, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       {
+        "id": "11a07c3e-bd3c-4f30-9069-a76f48fc976e",
+        "type": "scale",
+        "hex": "#00A3FF",
+        "name": "Solid Blue",
+        "value": 0
+       },
+       {
+        "id": "4aee013b-3807-417d-9a62-1c9d24532275",
+        "type": "scale",
+        "hex": "#00A3FF",
+        "name": "Solid Blue",
+        "value": 0
+       },
+       {
+        "id": "ba9adb57-8f7d-4bc2-83cb-c4243ce904ac",
+        "type": "scale",
+        "hex": "#00A3FF",
+        "name": "Solid Blue",
+        "value": 0
+       }
+      ],
+      "xColumn": "_value",
+      "fillColumns": [
+       "_start",
+       "_stop",
+       "_field",
+       "_measurement",
+       "experiment"
+      ],
+      "xAxisLabel": "temp",
+      "position": "stacked",
+      "binCount": 25,
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 10
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "066edaeda1bdd000",
+    "attributes": {
+     "name": "exterior histogram",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "histogram",
+      "queries": [
+       {
+        "text": "from(bucket: \"save-the-ping-pong-balls\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensorReadings\")\n  |> filter(fn: (r) => r[\"experiment\"] == \"seaside-kitchen-fridge-1\")\n  |> filter(fn: (r) => r[\"_field\"] == \"bme280_temperature\")\n  |> aggregateWindow(every: 1s, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       {
+        "id": "92147645-582e-4673-88a3-891f4baa6539",
+        "type": "scale",
+        "hex": "#FFD255",
+        "name": "Solid Yellow",
+        "value": 0
+       },
+       {
+        "id": "5d8023c5-5f83-432e-816d-662cc2f72bc4",
+        "type": "scale",
+        "hex": "#FFD255",
+        "name": "Solid Yellow",
+        "value": 0
+       },
+       {
+        "id": "e74dcc3f-a4bb-4fa4-9c3d-666ce84c32c2",
+        "type": "scale",
+        "hex": "#FFD255",
+        "name": "Solid Yellow",
+        "value": 0
+       }
+      ],
+      "xColumn": "_value",
+      "fillColumns": [
+       "_start",
+       "_stop",
+       "_field",
+       "_measurement",
+       "experiment"
+      ],
+      "xAxisLabel": "temp",
+      "position": "stacked",
+      "binCount": 25,
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 10
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "066edcecc9004000",
+    "attributes": {
+     "name": "door open duration",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "gauge",
+      "queries": [
+       {
+        "text": "from(bucket: \"save-the-ping-pong-balls\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensorReadings\")\n  |> filter(fn: (r) => r[\"_field\"] == \"reed_switch_is_open_int\")\n  |> filter(fn: (r) => r[\"experiment\"] == \"seaside-kitchen-fridge-1\")\n  |> sum()\n  |> yield(name: \"sum\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "prefix": "",
+      "tickPrefix": "",
+      "suffix": " s",
+      "tickSuffix": "",
+      "colors": [
+       {
+        "id": "0",
+        "type": "min",
+        "hex": "#00C9FF",
+        "name": "laser",
+        "value": 0
+       },
+       {
+        "id": "1",
+        "type": "max",
+        "hex": "#9394FF",
+        "name": "comet",
+        "value": 150
+       }
+      ],
+      "decimalPlaces": {
+       "isEnforced": true,
+       "digits": 0
+      },
+      "note": "",
+      "showNoteWhenEmpty": false
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "066edf95935f5000",
+    "attributes": {
+     "name": "min fridge temp",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "gauge",
+      "queries": [
+       {
+        "text": "from(bucket: \"save-the-ping-pong-balls\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensorReadings\")\n  |> filter(fn: (r) => r[\"_field\"] == \"tmp117_temperature\")\n  |> filter(fn: (r) => r[\"experiment\"] == \"seaside-kitchen-fridge-1\")\n  |> min()\n  |> yield(name: \"min\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "prefix": "",
+      "tickPrefix": "",
+      "suffix": " C",
+      "tickSuffix": "",
+      "colors": [
+       {
+        "id": "0",
+        "type": "min",
+        "hex": "#00C9FF",
+        "name": "laser",
+        "value": 0
+       },
+       {
+        "id": "1",
+        "type": "max",
+        "hex": "#9394FF",
+        "name": "comet",
+        "value": 15
+       }
+      ],
+      "decimalPlaces": {
+       "isEnforced": true,
+       "digits": 1
+      },
+      "note": "",
+      "showNoteWhenEmpty": false
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "066edfed9fbdd000",
+    "attributes": {
+     "name": "max fridge temp",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "gauge",
+      "queries": [
+       {
+        "text": "from(bucket: \"save-the-ping-pong-balls\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"sensorReadings\")\n  |> filter(fn: (r) => r[\"_field\"] == \"tmp117_temperature\")\n  |> filter(fn: (r) => r[\"experiment\"] == \"seaside-kitchen-fridge-1\")\n  |> max()\n  |> yield(name: \"max\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "prefix": "",
+      "tickPrefix": "",
+      "suffix": " C",
+      "tickSuffix": "",
+      "colors": [
+       {
+        "id": "0",
+        "type": "min",
+        "hex": "#00C9FF",
+        "name": "laser",
+        "value": 0
+       },
+       {
+        "id": "1",
+        "type": "max",
+        "hex": "#9394FF",
+        "name": "comet",
+        "value": 20
+       }
+      ],
+      "decimalPlaces": {
+       "isEnforced": true,
+       "digits": 1
+      },
+      "note": "",
+      "showNoteWhenEmpty": false
+     }
+    }
+   }
+  ]
+ },
+ "labels": []
+}

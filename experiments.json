@@ -1,0 +1,19 @@
+[
+    {
+        "seaside-kitchen-fridge": {
+            "description": "Just testing the setup, no real data" 
+        }
+    },
+    {
+        "seaside-kitchen-fridge-1": {
+            "description": "First experiment, out of town over the weekend.",
+            "fridge_setting": 4
+        }
+    },
+    {
+        "seaside-kitchen-fridge-2": {
+            "description": "Second experiment. Decreased fridge temp.",
+            "fridge_setting": 5
+        }
+    }
+]
